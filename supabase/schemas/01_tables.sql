@@ -181,3 +181,37 @@ create index contact_notes_contact_id_idx on public.contact_notes using btree (c
 create index contacts_company_id_idx on public.contacts using btree (company_id);
 create index deal_notes_deal_id_idx on public.deal_notes using btree (deal_id);
 create index deals_company_id_idx on public.deals using btree (company_id);
+
+--
+-- Marketing site: concept feedback
+--
+-- Owned by the elect-technologies-web marketing site, which writes to it with
+-- the service-role key from /api/concept-feedback. It lives in this shared
+-- Supabase project, so it is declared here to keep `supabase db diff` from
+-- generating a DROP for it. Do not read or write it from CRM application code.
+--
+create table public.concept_feedback (
+    id uuid not null default gen_random_uuid() primary key,
+    created_at timestamp with time zone not null default now(),
+    concept_slug text not null,
+    concept_name text not null,
+    reviewer_name text not null,
+    reviewer_email text not null,
+    reviewer_role text,
+    reviewer_company text,
+    reviewer_type text not null,
+    rating smallint not null,
+    feels_like_elect text not null,
+    buyers_respect text not null,
+    what_works text,
+    whats_missing text,
+    user_agent text,
+    request_id text,
+    constraint concept_feedback_reviewer_type_check check (reviewer_type = any (array['sean'::text, 'team'::text, 'forwarded'::text])),
+    constraint concept_feedback_rating_check check (rating >= 1 and rating <= 5),
+    constraint concept_feedback_feels_like_elect_check check (feels_like_elect = any (array['yes'::text, 'sort-of'::text, 'no'::text])),
+    constraint concept_feedback_buyers_respect_check check (buyers_respect = any (array['yes'::text, 'maybe'::text, 'no'::text]))
+);
+
+create index concept_feedback_slug_created_idx on public.concept_feedback using btree (concept_slug, created_at desc);
+create index concept_feedback_type_created_idx on public.concept_feedback using btree (reviewer_type, created_at desc);

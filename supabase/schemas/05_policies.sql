@@ -67,3 +67,10 @@ create policy "Enable update for admins" on public.configuration for update to a
 
 -- Favicons excluded domains
 create policy "Enable access for authenticated users only" on public.favicons_excluded_domains to authenticated using (true) with check (true);
+
+-- Marketing site: concept_feedback.
+-- RLS is enabled with NO policies and NO grants to anon/authenticated, so the
+-- table is reachable only by the service role (which bypasses RLS). That is
+-- deliberate: the marketing site writes it server-side. Adding a policy here
+-- would widen access — do not add one without a decision to expose this data.
+alter table public.concept_feedback enable row level security;
