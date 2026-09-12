@@ -65,6 +65,11 @@ export const OPERATIONS: Record<string, OpSpec> = {
       phone_jsonb: { type: "json" },
       company_id: { type: "int", required: true },
       sales_id: { type: "int" },
+      // Atomic CRM creates contacts with `tags: []` (contactModel.ts), and the
+      // column is a nullable bigint[] with no default. A null here is not
+      // equivalent: TagsListEdit spreads `record.tags` unguarded, so a
+      // null-tags contact throws in the CRM UI.
+      tags: { type: "intArray" },
       first_seen: { type: "string" },
       last_seen: { type: "string" },
     },
