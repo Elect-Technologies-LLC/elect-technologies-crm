@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 10 470 490" width="470" height="490" role="img" aria-label="Elect Technologies">
+  <title>Elect Technologies</title>
+  <!--
+    Elect Technologies geometric mark, adapted for small-size UI display.
+    Source: elect-technologies-web/public/images/logo-square.svg (mark only,
+    wordmark dropped — the CRM header renders the name as its own <h1>).
+    Stroke weights scaled ~14x from the source so the line art stays visible
+    at h-6 (24px); the source weights (1.4-1.8) render sub-pixel at that size.
+    Single-colour gold #F5C518 — used for both the dark and light themes.
+  -->
+  <defs>
+    <marker id="ah-e-dark" markerWidth="40" markerHeight="30" refX="36" refY="15" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0 0, 40 15, 0 30" fill="#F5C518"/>
+    </marker>
+  </defs>
+
+  <!-- Outer triangle + arrow extensions -->
+  <g stroke="#F5C518" stroke-width="26" fill="none" stroke-linecap="round">
+    <line x1="62"  y1="420" x2="271" y2="28"  marker-end="url(#ah-e-dark)"/>
+    <line x1="240" y1="85"  x2="452" y2="484" marker-end="url(#ah-e-dark)"/>
+    <line x1="418" y1="420" x2="14"  y2="420" marker-end="url(#ah-e-dark)"/>
+  </g>
+
+  <!-- Inner triangle -->
+  <g stroke="#F5C518" stroke-width="22" fill="none" stroke-linecap="round">
+    <line x1="136" y1="390" x2="240" y2="126"/>
+    <line x1="240" y1="126" x2="344" y2="390"/>
+    <line x1="136" y1="390" x2="344" y2="390"/>
+  </g>
+
+  <!-- Inverted triangle + arrows -->
+  <g stroke="#F5C518" stroke-width="20" fill="none" stroke-linecap="round">
+    <line x1="263" y1="168" x2="372" y2="168" marker-end="url(#ah-e-dark)"/>
+    <line x1="263" y1="168" x2="303" y2="238"/>
+    <line x1="343" y1="168" x2="303" y2="238"/>
+    <line x1="303" y1="238" x2="303" y2="265" marker-end="url(#ah-e-dark)"/>
+  </g>
+
+  <!-- Flame / bolt -->
+  <path
+    d="M 248,130
+       C 255,178 263,288 259,372
+       C 238,355 217,310 223,254
+       C 231,194 244,150 248,130 Z"
+    fill="#F5C518"
+  />
+</svg>
